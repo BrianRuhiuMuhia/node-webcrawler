@@ -16,13 +16,29 @@ function getUrlsFromHtml(htmlBody,baseUrl)
     {
         if(element.slice(0,1)==="/")
         {
-            urls.push(`${baseUrl}${element}`)
+            try{
+                const urlObj=new URL(`${baseUrl}${element.href}`)
+                 urls.push(urlObj)
+            }
+            catch(err)
+            {
+                console.log(err)
+            } 
         }
         else{
-
-            urls.push(element)
+            try{
+                const urlObj=new URL(element.href)
+                urls.push(urlObj)
+                        }
+                        catch(err)
+                        {
+                            console.log(err)
+                        
+        
         }
     }
+ }
+     
     return urls
 }
 
